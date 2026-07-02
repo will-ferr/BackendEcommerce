@@ -1,0 +1,31 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+**/packages/*
+
+# macOS
+.DS_Store
+
+# Test results
+TestResults/
+
+# Sensitive local config (nunca commitar segredos)
+appsettings.Development.json
+appsettings.Local.json
+*.env
