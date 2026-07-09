@@ -6,27 +6,27 @@ using Ecommerce.Domain.ValueObjects;
 
 namespace Ecommerce.Domain.Entities;
 
-public class Custummer : Entity
+public class Customer : Entity
 {
     public string Name {get;private set;}
     public Email Email{get;private set;}
     public string PasswordHash {get; private set;}
-    public DateTime CreateAT {get; private set;}
+    public DateTime CreatedAt {get; private set;}
     public bool IsActive {get; private set;}
 
 
-    protected Custummer(){}
+    protected Customer(){}
 
-    private Custummer(string name, Email email, string passwordHash)
+    private Customer(string name, Email email, string passwordHash)
     {
         Name = name;
         Email = email;
         PasswordHash = passwordHash;
-        CreateAT = DateTime.UtcNow;
+        CreatedAt = DateTime.UtcNow;
         IsActive = true;
     }
 
-    public static Custummer Register (string name, string email, string passwordHash)
+    public static Customer Register (string name, string email, string passwordHash)
     {
         if(String.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Nome é obrigatorio.");
@@ -35,7 +35,7 @@ public class Custummer : Entity
 
         var emailValid = Email.Create(email);
 
-        return new Custummer(name, emailValid, passwordHash);
+        return new Customer(name, emailValid, passwordHash);
     }
 
     public void UpdateName(string newName)
