@@ -6,27 +6,27 @@ using Ecommerce.Domain.ValueObjects;
 
 namespace Ecommerce.Domain.Entities;
 
-public class Cliente : Entity
+public class Custummer : Entity
 {
     public string Name {get;private set;}
     public Email Email{get;private set;}
     public string PasswordHash {get; private set;}
-    public DateTime CreateIn {get; private set;}
-    public bool Active {get; private set;}
+    public DateTime CreateAT {get; private set;}
+    public bool IsActive {get; private set;}
 
 
-    protected Cliente(){}
+    protected Custummer(){}
 
-    private Cliente(string name, Email email, string passwordHash)
+    private Custummer(string name, Email email, string passwordHash)
     {
         Name = name;
         Email = email;
         PasswordHash = passwordHash;
-        CreateIn = DateTime.UtcNow;
-        Active = true;
+        CreateAT = DateTime.UtcNow;
+        IsActive = true;
     }
 
-    public static Cliente Register (string name, string email, string passwordHash)
+    public static Custummer Register (string name, string email, string passwordHash)
     {
         if(String.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Nome é obrigatorio.");
@@ -35,7 +35,7 @@ public class Cliente : Entity
 
         var emailValid = Email.Create(email);
 
-        return new Cliente(name, emailValid, passwordHash);
+        return new Custummer(name, emailValid, passwordHash);
     }
 
     public void UpdateName(string newName)
@@ -46,12 +46,12 @@ public class Cliente : Entity
         Name = newName;
     }
 
-    public void Desativar()
+    public void Deactivate()
     {
-        if (!Active)
+        if (!IsActive)
             throw new InvalidOperationException("Cliente já está inativo");
         
-        Active = false;
+        IsActive = false;
     }
 
 }
